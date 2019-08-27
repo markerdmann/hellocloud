@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: hellocloud
-        image: gcr.io/dirthub/hellocloud:latest
+        image: gcr.io/flipthetable/hellocloud:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
