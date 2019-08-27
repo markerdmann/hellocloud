@@ -24,10 +24,6 @@ spec:
     spec:
       containers:
       - name: hellocloud
-        args:
-        - npm
-        - run
-        - start
         image: gcr.io/dirthub/hellocloud:latest
         imagePullPolicy: IfNotPresent
         ports:
