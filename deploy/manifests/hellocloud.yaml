@@ -38,14 +38,6 @@ spec:
             name: hellocloud
         - secretRef:
             name: hellocloud
-      - name: esp
-        image: gcr.io/endpoints-release/endpoints-runtime:1
-        args: [
-          "--http_port", "8081",
-          "--backend", "127.0.0.1:8000",
-          "--service", "hellocloud.endpoints.dirthub.cloud.goog",
-          "--rollout_strategy", "managed",
-        ]
         ports:
         - containerPort: 8081
           protocol: TCP
