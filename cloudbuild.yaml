@@ -1,4 +1,13 @@
 steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/flipthetable/hellocloud", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/flipthetable/hellocloud"]
+  - name: "gcr.io/cloud-builders/gke-deploy:stable"
+    args:
+      - run
+      - --filename=deploy/manifests/hellocloud.yaml
+      - --image=gcr.io/flipthetable/hellocloud:latest
+      - --location=us-west2
+      - --cluster=default-cluster
 images: ["gcr.io/flipthetable/hellocloud"]

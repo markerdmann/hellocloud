@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hellocloud
+  name: hellocloud
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: hellocloud
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hellocloud
+    spec:
+      containers:
+      - name: hellocloud
+        args:
+        - npm
+        - run
+        - start
+        image: gcr.io/dirthub/hellocloud:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: hellocloud
+        - secretRef:
+            name: hellocloud
+      - name: esp
+        image: gcr.io/endpoints-release/endpoints-runtime:1
+        args: [
+          "--http_port", "8081",
+          "--backend", "127.0.0.1:8000",
+          "--service", "hellocloud.endpoints.dirthub.cloud.goog",
+          "--rollout_strategy", "managed",
+        ]
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        imagePullPolicy: IfNotPresent
+        
