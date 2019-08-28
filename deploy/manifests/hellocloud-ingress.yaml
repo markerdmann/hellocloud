@@ -8,13 +8,13 @@ metadata:
     app: hellocloud
 spec:
   backend:
-    serviceName: hellocloud
-    servicePort: 8080
+    serviceName: hellocloud-service
+    servicePort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hellocloud
+  name: hellocloud-service
   labels:
     app: hellocloud
 spec:
