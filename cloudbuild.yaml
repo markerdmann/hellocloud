@@ -14,5 +14,5 @@ steps:
     args:
       - apply
       - -f
-      - deploy/manifests/hellocloud-service.yaml
+      - deploy/manifests/hellocloud-ingress.yaml
 images: ["gcr.io/flipthetable/hellocloud"]
