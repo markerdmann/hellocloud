@@ -10,4 +10,10 @@ steps:
       - --image=gcr.io/flipthetable/hellocloud:latest
       - --location=us-west2
       - --cluster=default-cluster
+  - name: "gcr.io/cloud-builders/gke-deploy:stable"
+    args:
+      - run
+      - --filename=deploy/manifests/hellocloud-service.yaml
+      - --location=us-west2
+      - --cluster=default-cluster
 images: ["gcr.io/flipthetable/hellocloud"]
