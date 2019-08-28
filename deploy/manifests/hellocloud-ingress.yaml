@@ -16,7 +16,7 @@ kind: Service
 metadata:
   name: hellocloud-service
   labels:
-    app: hellocloud
+    app: hellocloud-service
 spec:
   type: NodePort
   selector:
