@@ -21,6 +21,7 @@ spec:
   type: NodePort
   selector:
     app: hellocloud
+    tier: web
   ports:
     - port: 80
       targetPort: 8080
